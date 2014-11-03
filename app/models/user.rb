@@ -41,6 +41,7 @@ class User
   #roles for user
   field :rules_mask , type: Integer ,default: 0
   set_rules :librarian, :librarian_patron
+  field :oauth_token
   # has_many :sent_requests, class_name: "API::Request", foreign_key: :sender_id
   # has_many :requests, class_name: "API::Request", foreign_key: :receiver_id
  
@@ -64,8 +65,7 @@ class User
 
   # attr_accessor :avatar_data, :avatar_content_type
   # before_save :decode_avatar_data
-
-
+  before_create :set_oauth_token
   def gender_name
     if self.gender.present?
       return self.gender == true ? "male" : "female"
@@ -87,7 +87,14 @@ class User
   #     self.avatar = data
   #   end
   # end
-  
+  def set_oauth_token
+    token = Devise.friendly_token[0,20]
+    # while !User.find_by_oauth_token(token).nil?  do
+    while !User.where(oauth_token: token).first.nil?  do
+      token = Devise.friendly_token[0,20]
+    end
+    self.oauth_token = token
+  end
 	def to_builder
 	   Jbuilder.new do |user|
 	     user.id self._id.to_s

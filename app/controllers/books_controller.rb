@@ -15,10 +15,16 @@ def index
 end
 
 def create
-	Book.create(:title => params[:title] , :type => params[:type] , :publish_date => params[:publish_date],:author_id =>  params[:author_id])
+	puts params
+	@book = Book.create(:title => params[:title] , :type => params[:type] , :publish_date => params[:publish_date],:author_id =>  params[:author_id])
+puts "---------------------------------------------"
+	puts @book
 end
 
 def update
-	end
 
+	end
+def book_params
+	params.permit(:title, :type, :password, :publish_date, :author_id)
+end
 end
