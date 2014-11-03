@@ -1,10 +1,14 @@
+require 'carrierwave/mongoid'
+
 class Book
 	include Mongoid::Document
   include Mongoid::Timestamps
 	field :title
   field :type
   field :publish_date, type: Date
-
+  # field :content
+  mount_uploader :content, FileUploader
+  attr_accessor :content
   belongs_to :author, :class_name => "Author", :inverse_of => :books
 
   validates :author, :presence => true

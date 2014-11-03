@@ -15,10 +15,9 @@ def index
 end
 
 def create
-	puts params
-	@book = Book.create(:title => params[:title] , :type => params[:type] , :publish_date => params[:publish_date],:author_id =>  params[:author_id])
-puts "---------------------------------------------"
-	puts @book
+  puts "="*200
+  puts params
+	@book = Book.create(:title => params[:title] , :type => params[:type] , :publish_date => params[:publish_date],:author_id =>  params[:author_id],:content => params[:content])
 end
 
 def update
