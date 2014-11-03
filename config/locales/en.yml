@@ -1,0 +1,26 @@
+en:
+  users:
+    login:
+      missing_params: "missing user parameters"
+      error_params: "Error with your username or password"
+    token:
+      empty: "empty user token"
+      invalid: "invalid user token"
+    confirm_account:
+      success: "Thanks your account have been confirmed"
+    email:
+      empty: "empty email"
+      invalid: "invalid email"
+    username:
+      empty: "empty username"
+      invalid: "invalid username"
+    password:
+      success_sent: "password has been sent successfully"
+      success_updated: "password has been updated successfully"
+    delete_account:
+      success_deleted: "user account deleted successfully"
+      failed_deleted: "something went wrong user account can not be deleted"
+ 
+  
+
+            

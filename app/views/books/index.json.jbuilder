@@ -1,0 +1,1 @@
+json.partial! 'shared/paginated_collection', records: @books, partial_url: 'books/book'
