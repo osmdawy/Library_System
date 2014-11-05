@@ -66,6 +66,7 @@ class User
   # attr_accessor :avatar_data, :avatar_content_type
   # before_save :decode_avatar_data
   before_create :set_oauth_token
+  
   def gender_name
     if self.gender.present?
       return self.gender == true ? "male" : "female"
