@@ -39,7 +39,7 @@ gem "devise-async"
 gem 'kaminari'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'rack-cors', :require => 'rack/cors'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 

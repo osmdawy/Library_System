@@ -13,7 +13,7 @@ class Book
   belongs_to :author, :class_name => "Author", :inverse_of => :books
   has_many :images, as: :uploadable, dependent: :destroy 
 
-  validates :author, :presence => true
+  # validates :author, :presence => true
 
   index({ title: 1 })
 
