@@ -9,9 +9,11 @@ class Api::BooksController < ApplicationController
     # ======================================================
   def index
   	page = (params[:page] || 1).to_i
-    per_page = (params[:per] || 25).to_i
+    per_page = (params[:per_page] || 25).to_i
     query = params[:query]
+
   	@books = Book.where(title: /.*#{query}.*/).page(page).per(per_page)
+    @total_pages = ((@books.total_count*1.0)/per_page).ceil
   end
   def show
     id = params[:id]
@@ -21,15 +23,17 @@ class Api::BooksController < ApplicationController
     puts "-------------------------------------------------------------------"
     puts params
     puts "--------------------------------------------------------------------"
-    book_params = params[:book]
-  	@book = Book.create(:title => book_params[:title] , :type => book_params[:type] , :publish_date => book_params[:publish_date],:author_id =>  book_params[:author_id],:content => book_params[:content])
+    # book_params = params[:book]
+  	@book = Book.create(book_params)
   end
 
   def update
 
+    @book = Book.where(id: params[:id]).first
+    @book.update(book_params)
   end
   
   def book_params
-  	params.permit(:title, :type, :password, :publish_date, :author_id)
+  	params.require(:book).permit(:title, :type, :publish_date, :author_id,:content)
   end
 end

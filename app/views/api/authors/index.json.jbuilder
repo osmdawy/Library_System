@@ -1,5 +1,5 @@
 json.authors do
-	json.array! @authors do |author|
-		json.partial! 'api/authors/author', author: author
-	end
+
+json.partial! 'api/shared/paginated_collection', records: @authors, partial_url: 'api/authors/author'
+
 end
